@@ -59,19 +59,13 @@ public class CDLibraryServiceDBImpl implements CDLibraryService {
 
 	@Override
 	public String deleteAllCD() {
-		CD movie = findAllMovies();
-		if (movie != null) {
-			manager.remove(movie);
-		}
-		return "{\"message\": \"all cd sucessfully deleted\"}";
+        Query query = manager.createQuery("DELETE FROM CD");
+        query.executeUpdate();
+        return "{\"message\": \"all cd sucessfully deleted\"}";
 	}
 
 	private CD findMovie(Long id) {
 		return manager.find(CD.class, id);
 	}
-	private CD findAllMovies(){
-		{
-			return manager.find(CD.class, null);
-		}
-	}
+
 }
