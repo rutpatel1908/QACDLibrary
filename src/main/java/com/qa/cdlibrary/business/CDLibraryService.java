@@ -1,11 +1,11 @@
 package com.qa.cdlibrary.business;
 
 public interface CDLibraryService {
-	String getAllMovies();
+	String getAllCD();
 
-	String createMovie(String movie);
+	String createCD(String cd);
 
-	String updateMovie(Long id, String movie);
+	String updateCD(Long id, String cd);
 
-	String deleteMovie(Long id);
+	String deleteCD(Long id);
 }

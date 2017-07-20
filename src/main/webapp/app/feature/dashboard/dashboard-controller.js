@@ -6,5 +6,5 @@
 
         vm.test = "test";
     };
-    angular.module('cinema').controller('dashboardController', [DashBoardController]);
+    angular.module('cdlibrary').controller('dashboardController', [DashBoardController]);
 }());

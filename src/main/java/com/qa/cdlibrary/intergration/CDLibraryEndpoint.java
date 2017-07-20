@@ -22,28 +22,28 @@ public class CDLibraryEndpoint {
 	@GET
 	@Produces({ "application/json" })
 	public String getAllMovies() {
-		return service.getAllMovies();
+		return service.getAllCD();
 	}
 
 	@Path("/json")
 	@POST
 	@Produces({ "application/json" })
-	public String addMovie(String movie) {
-		return service.createMovie(movie);
+	public String addMovie(String cd) {
+		return service.createCD(cd);
 	}
 
 	@Path("/json/{id}")
 	@PUT
 	@Produces({ "application/json" })
-	public String updateMovie(@PathParam("id") Long id, String movie) {
-		return service.updateMovie(id, movie);
+	public String updateMovie(@PathParam("id") Long id, String cd) {
+		return service.updateCD(id, cd);
 	}
 
 	@Path("/json/{id}")
 	@DELETE
 	@Produces({ "application/json" })
 	public String deleteMovie(@PathParam("id") Long id) {
-		return service.deleteMovie(id);
+		return service.deleteCD(id);
 
 	}
 

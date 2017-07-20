@@ -24,37 +24,37 @@ public class CDLibraryServiceDBImpl implements CDLibraryService {
 	private JSONUtil util;
 
 	@Override
-	public String getAllMovies() {
+	public String getAllCD() {
 		Query query = manager.createQuery("Select m FROM CD m");
 		Collection<CD> movies = (Collection<CD>) query.getResultList();
 		return util.getJSONForObject(movies);
 	}
 
 	@Override
-	public String createMovie(String movie) {
+	public String createCD(String movie) {
 		CD aMovie = util.getObjectForJSON(movie, CD.class);
 		manager.persist(aMovie);
-		return "{\"message\": \"movie sucessfully added\"}";
+		return "{\"message\": \"cd sucessfully added\"}";
 	}
 
 	@Override
-	public String updateMovie(Long id, String movie) {
+	public String updateCD(Long id, String movie) {
 		CD updatedMovie = util.getObjectForJSON(movie, CD.class);
 		CD movieInDB = findMovie(id);
 		if (movieInDB != null) {
 			movieInDB = updatedMovie;
 			manager.merge(movieInDB);
 		}
-		return "{\"message\": \"movie sucessfully updated\"}";
+		return "{\"message\": \"cd sucessfully updated\"}";
 	}
 
 	@Override
-	public String deleteMovie(Long id) {
+	public String deleteCD(Long id) {
 		CD movieInDB = findMovie(id);
 		if (movieInDB != null) {
 			manager.remove(movieInDB);
 		}
-		return "{\"message\": \"movie sucessfully deleted\"}";
+		return "{\"message\": \"cd sucessfully deleted\"}";
 	}
 
 	private CD findMovie(Long id) {

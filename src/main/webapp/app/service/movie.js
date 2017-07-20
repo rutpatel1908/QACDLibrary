@@ -2,24 +2,24 @@
 
 (function () {
 
-    angular.module("cinema").service("movieDal", ["dal", MovieDal]);
+    angular.module("cdlibrary").service("cdDal", ["dal", cdDal]);
 
-    function MovieDal (dal) {
+    function cdDal (dal) {
 
-        this.getMovies = function () {
-            return dal.http.GET("rest/cinema/json");
+        this.getcds = function () {
+            return dal.http.GET("rest/cdlibrary/json");
         };
 
-        this.saveMovie = function (movieToSave) {
-            return dal.http.POST("rest/cinema/json", movieToSave);
+        this.savecd = function (cdToSave) {
+            return dal.http.POST("rest/cdlibrary/json", cdToSave);
         };
 
-        this.updateMovie = function (movieToUpdate) {
-            return dal.http.PUT("rest/cinema/json/", movieToUpdate);
+        this.updatecd = function (cdToUpdate) {
+            return dal.http.PUT("rest/cdlibrary/json/", cdToUpdate);
         };
 
-        this.deleteMovie = function (movieToDelete) {
-            return dal.http.DELETE("rest/cinema/json/", movieToDelete);
+        this.deletecd = function (cdToDelete) {
+            return dal.http.DELETE("rest/cdlibrary/json/", cdToDelete);
         };
 
     }

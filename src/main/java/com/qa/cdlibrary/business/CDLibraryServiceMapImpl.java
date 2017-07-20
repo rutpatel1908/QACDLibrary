@@ -10,25 +10,25 @@ import javax.enterprise.inject.Alternative;
 public class CDLibraryServiceMapImpl implements CDLibraryService {
 
 	@Override
-	public String getAllMovies() {
+	public String getAllCD() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public String createMovie(String movie) {
+	public String createCD(String cd) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public String updateMovie(Long id, String movie) {
+	public String updateCD(Long id, String cd) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public String deleteMovie(Long id) {
+	public String deleteCD(Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
