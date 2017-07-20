@@ -1,5 +1,6 @@
 package com.qa.cdlibrary.business;
 
+import java.sql.ResultSet;
 import java.util.Collection;
 
 import javax.ejb.Stateless;
@@ -64,8 +65,16 @@ public class CDLibraryServiceDBImpl implements CDLibraryService {
         return "{\"message\": \"all cd sucessfully deleted\"}";
 	}
 
+
+	@Override
+	public String FindCDByName(String name) {
+
+		Query query = manager.createQuery("SELECT artistName FROM CD where artistName=" + name);
+		Collection<CD> results = (Collection<CD>) query.getResultList();
+		return util.getJSONForObject(results);
+	}
+
 	private CD findMovie(Long id) {
 		return manager.find(CD.class, id);
 	}
-
 }

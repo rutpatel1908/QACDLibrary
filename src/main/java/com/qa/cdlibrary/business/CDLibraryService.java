@@ -10,4 +10,7 @@ public interface CDLibraryService {
 	String deleteCD(Long id);
 
 	String deleteAllCD();
+
+	String FindCDByName(String name);
+
 }
