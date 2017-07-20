@@ -39,4 +39,10 @@ public class CDLibraryServiceMapImpl implements CDLibraryService {
 		return null;
 	}
 
+	@Override
+	public String FindCDBLong(Long id){
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -11,6 +11,6 @@ public interface CDLibraryService {
 
 	String deleteAllCD();
 
-	String FindCDByName(String name);
+	String FindCDBLong(Long id);
 
 }

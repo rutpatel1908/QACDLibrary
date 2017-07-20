@@ -67,9 +67,9 @@ public class CDLibraryServiceDBImpl implements CDLibraryService {
 
 
 	@Override
-	public String FindCDByName(String name) {
+	public String FindCDBLong(Long id){
 
-		Query query = manager.createQuery("SELECT * FROM CD where artistName=" + name);
+		Query query = manager.createQuery("SELECT * FROM CD where id=" + id);
 		Collection<CD> results = (Collection<CD>) query.getResultList();
 		return util.getJSONForObject(results);
 	}

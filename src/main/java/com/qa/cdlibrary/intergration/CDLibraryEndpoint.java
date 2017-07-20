@@ -55,4 +55,11 @@ public class CDLibraryEndpoint {
 
 	}
 
+    @Path("/json/{id}")
+    @GET
+    @Produces({ "application/json" })
+    String FindCDBLong(@PathParam("id") Long id) {
+        return service.FindCDBLong(id);
+    }
+
 }
