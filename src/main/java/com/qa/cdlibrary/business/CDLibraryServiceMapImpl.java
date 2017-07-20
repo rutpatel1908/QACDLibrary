@@ -33,4 +33,10 @@ public class CDLibraryServiceMapImpl implements CDLibraryService {
 		return null;
 	}
 
+	@Override
+	public String deleteAllCD() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

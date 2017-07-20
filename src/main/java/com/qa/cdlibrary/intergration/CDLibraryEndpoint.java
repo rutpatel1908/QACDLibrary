@@ -47,4 +47,12 @@ public class CDLibraryEndpoint {
 
 	}
 
+	@Path("/json/")
+	@DELETE
+	@Produces({ "application/json" })
+	public String deleteAllCD() {
+		return service.deleteAllCD();
+
+	}
+
 }
