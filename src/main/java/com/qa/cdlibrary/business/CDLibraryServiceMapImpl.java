@@ -40,7 +40,7 @@ public class CDLibraryServiceMapImpl implements CDLibraryService {
 	}
 
 	@Override
-	public String FindCDBLong(Long id){
+	public String findCDByID(Long id){
 		// TODO Auto-generated method stub
 		return null;
 	}

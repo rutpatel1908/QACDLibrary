@@ -1,6 +1,5 @@
 package com.qa.cdlibrary.business;
 
-import java.sql.ResultSet;
 import java.util.Collection;
 
 import javax.ejb.Stateless;
@@ -10,7 +9,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import com.qa.cdlibrary.business.CDLibraryService;
 import com.qa.cdlibrary.persistence.CD;
 import com.qa.cdlibrary.util.JSONUtil;
 
@@ -27,33 +25,33 @@ public class CDLibraryServiceDBImpl implements CDLibraryService {
 	@Override
 	public String getAllCD() {
 		Query query = manager.createQuery("Select m FROM CD m");
-		Collection<CD> movies = (Collection<CD>) query.getResultList();
-		return util.getJSONForObject(movies);
+		Collection<CD> CDList = (Collection<CD>) query.getResultList();
+		return util.getJSONForObject(CDList);
 	}
 
 	@Override
 	public String createCD(String movie) {
-		CD aMovie = util.getObjectForJSON(movie, CD.class);
-		manager.persist(aMovie);
+		CD aCD = util.getObjectForJSON(movie, CD.class);
+		manager.persist(aCD);
 		return "{\"message\": \"cd sucessfully added\"}";
 	}
 
 	@Override
-	public String updateCD(Long id, String movie) {
-		CD updatedMovie = util.getObjectForJSON(movie, CD.class);
-		CD movieInDB = findMovie(id);
-		if (movieInDB != null) {
-			movieInDB = updatedMovie;
-			manager.merge(movieInDB);
+	public String updateCD(Long id, String aCD) {
+		CD updatedCD = util.getObjectForJSON(aCD, CD.class);
+		CD CDInDB = findCD(id);
+		if (CDInDB != null) {
+			CDInDB = updatedCD;
+			manager.merge(CDInDB);
 		}
 		return "{\"message\": \"cd sucessfully updated\"}";
 	}
 
 	@Override
 	public String deleteCD(Long id) {
-		CD movieInDB = findMovie(id);
-		if (movieInDB != null) {
-			manager.remove(movieInDB);
+		CD CDInDB = findCD(id);
+		if (CDInDB != null) {
+			manager.remove(CDInDB);
 		}
 		return "{\"message\": \"cd sucessfully deleted\"}";
 	}
@@ -65,16 +63,15 @@ public class CDLibraryServiceDBImpl implements CDLibraryService {
         return "{\"message\": \"all cd sucessfully deleted\"}";
 	}
 
-
 	@Override
-	public String FindCDBLong(Long id){
+    public String findCDByID(Long id){
+        String findCDByIDQuery = "Select c FROM CD c WHERE id = "+id;
+        Query query = manager.createQuery(findCDByIDQuery);
+        Collection<CD> results = (Collection<CD>) query.getResultList();
+        return util.getJSONForObject(results);
+    }
 
-		Query query = manager.createQuery("SELECT * FROM CD where id=" + id);
-		Collection<CD> results = (Collection<CD>) query.getResultList();
-		return util.getJSONForObject(results);
-	}
-
-	private CD findMovie(Long id) {
+	private CD findCD(Long id) {
 		return manager.find(CD.class, id);
 	}
 }

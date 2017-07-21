@@ -1,13 +1,8 @@
 package com.qa.cdlibrary.intergration;
 
 import javax.inject.Inject;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
+import javax.ws.rs.core.Response;
 
 import com.qa.cdlibrary.business.CDLibraryService;
 import com.qa.cdlibrary.business.CDLibraryService;
@@ -42,24 +37,32 @@ public class CDLibraryEndpoint {
 	@Path("/json/{id}")
 	@DELETE
 	@Produces({ "application/json" })
-	public String deleteCD(@PathParam("id") Long id) {
-		return service.deleteCD(id);
-
-	}
+	public String deleteCD(@PathParam("id") Long id) {return service.deleteCD(id); }
 
 	@Path("/json/")
 	@DELETE
 	@Produces({ "application/json" })
-	public String deleteAllCD() {
-		return service.deleteAllCD();
-
-	}
+	public String deleteAllCD() {return service.deleteAllCD();}
 
     @Path("/json/{id}")
     @GET
     @Produces({ "application/json" })
-    String FindCDBLong(@PathParam("id") Long id) {
-        return service.FindCDBLong(id);
+    public  String findCDByID(@PathParam("id") Long id) {return service.findCDByID(id);
     }
+
+	@GET
+	@Path("/json/{year}/{month}/{day}")
+		public Response getUserHistory(
+				@PathParam("year") int year,
+				@PathParam("month") int month,
+				@PathParam("day") int day) {
+
+			String date = year + "/" + month + "/" + day;
+
+			return Response.status(200)
+					.entity("getUserHistory is called, year/month/day : " + date)
+					.build();
+
+		}
 
 }
