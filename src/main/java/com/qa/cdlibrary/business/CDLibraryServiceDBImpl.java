@@ -32,19 +32,16 @@ public class CDLibraryServiceDBImpl implements CDLibraryService {
 	}
 
 	@Override
-	public String createCD(String movie) {
-	    try {
+	public String createCD(String movie) throws IllegalArgumentException {
 	        String errorMessage = "";
             CD aCD = util.getObjectForJSON(movie, CD.class);
-            if (aCD.getArtistName() == null) errorMessage =errorMessage.concat("artistName, ");
-            if (aCD.getGenre() == null) errorMessage=errorMessage.concat("genre, ");
-            if (aCD.getAlbumTitle() == null) errorMessage=errorMessage.concat("albumTitle, ");
+            if (aCD.getArtistName() == null) errorMessage +=("artistName, ");
+            if (aCD.getGenre() == null) errorMessage+=("genre, ");
+            if (aCD.getAlbumTitle() == null) errorMessage+=("albumTitle, ");
             if (errorMessage.length()>2) throw new IllegalArgumentException( errorMessage +"is missing");
             manager.persist(aCD);
             return "{\"message\": \"cd successfully added\"}";
-        }catch (IllegalArgumentException error) {
-	        return  error.getMessage();
-        }
+
 	}
 
 	@Override

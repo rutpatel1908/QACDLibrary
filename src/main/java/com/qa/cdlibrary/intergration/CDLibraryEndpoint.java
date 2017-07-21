@@ -24,7 +24,12 @@ public class CDLibraryEndpoint {
 	@POST
 	@Produces({ "application/json" })
 	public String addCD(String cd) {
-		return service.createCD(cd);
+		try{
+			return service.createCD(cd);
+		}catch (Exception error) {
+			     return  error.getMessage();
+			  }
+
 	}
 
 	@Path("/json/{id}")
