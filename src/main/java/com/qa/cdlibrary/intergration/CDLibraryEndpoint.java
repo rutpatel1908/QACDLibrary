@@ -51,16 +51,21 @@ public class CDLibraryEndpoint {
     }
 
 	@GET
-	@Path("/json/{year}/{month}/{day}")
-		public Response getUserHistory(
-				@PathParam("year") int year,
-				@PathParam("month") int month,
-				@PathParam("day") int day) {
-
-			String date = year + "/" + month + "/" + day;
-
+	@Path("/json/help")
+		public Response getUserHistory() {
+			String help = "The functions available and how to use them are as follows:\n" +
+					"GET /json => all CDs shown\nGET /json/{id} => Get CD by it's id\n" +
+					"POST /json => adds a CD in the json format like as follows: " +
+					"{\"artistName\":\"Artist name goes here\",\"genre\":\"Genre goes" +
+					" here\",\"albumTitle\":\"Album Title goes here\"}\n" +
+					"DELETE /json => Deletes all CDs in the database\n DELETE /json/{id}" +
+					" => Deletes a CD in the database by id number entered\n" +
+					"PUT /json/{id} => Updates a CD entry by id, the unchanged values need " +
+					"to be entered, entered must be in the format: " +
+					"{\"id\":the id to update goes here,\"artistName\":\"The Updated artist name" +
+					" goes here\",\"genre\":\"The updated genre\",\"albumTitle\":\"The updated genre\"}";
 			return Response.status(200)
-					.entity("getUserHistory is called, year/month/day : " + date)
+					.entity(help)
 					.build();
 
 		}
